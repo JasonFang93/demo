@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简易网页时钟</title>
+    <style type="text/css" rel="stylesheet">
+        *{ margin: 0; padding: 0;}
+        body{ width: 100%;}
+        .main{ width: 250px; margin: 20px auto; padding: 20px; text-align: center; background-color: #111; color: #fff;}
+        .main span{ width: 35px; margin: 0 10px; display: inline-block; text-align: center; border: 2px solid #ddd; background-color: #fff; color: #000;}
+    </style>
+</head>
+<body>
+    <div class="main">
+        <span class="hour">12</span>时<span class="minute">33</span>分<span class="second">11</span>秒
+    </div>
+    <script type="text/javascript">
+        window.onload = function () {
+            var oSpan = document.getElementsByTagName("span"),
+                  time = {};
+            getTime();
+            function getTime () {
+                var date = new Date();
+                time.hour = date.getHours();
+                time.minute = date.getMinutes();
+                time.second = date.getSeconds();
+                for (var i in oSpan) {
+                    if (time[oSpan[i].className] < 10) {
+                        time[oSpan[i].className] = "0" + time[oSpan[i].className];
+                    }
+                    oSpan[i].innerHTML = time[oSpan[i].className]
+                }
+                date = null;
+                setTimeout(getTime, 1000);
+            }
+        }
+    </script>
+</body>
+</html>
