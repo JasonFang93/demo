@@ -3,8 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <title>自动播放</title>
+    <style rel="stylesheet" type="text/css">
+		*{ margin: 0; padding: 0;}
+		li{ list-style: none;}
+		body{ width: 100%; background-color: #333;}
+		.main{ position: relative; margin: 10px auto; width: 492px; border: 8px solid #fff; border-radius: 6px;}
+		#carousel{ border: 1px solid #ddd; background-color: #fff;}
+		.images{ position: relative; width: 490px; height: 170px;}
+		.images li{ position: absolute; top: 0; opacity: 0;}
+		.btn{ position: absolute; right: 5px; bottom: 5px;}
+		.btn li{ padding-top: 1px; width: 20px; height: 19px; text-align: center; color: #fff; font: 12px 'Microsoft YaHei' bold; display: inline-block; background-color: #f90; border-radius: 50%; opacity: 0.7; filter: alpha(opacity=70); cursor: pointer;}
+		.btn .active{ opacity: 1; background-color: #f60;}
+    </style>
 </head>
 <body>
-    
+    <div class="main">
+    	<div id="carousel">
+    		<ul class="images">
+    			<li><img src="img/demo401.jpg" alt=""></li>
+    			<li><img src="img/demo402.jpg" alt=""></li>
+    			<li><img src="img/demo403.jpg" alt=""></li>
+    			<li><img src="img/demo404.jpg" alt=""></li>
+    			<li><img src="img/demo405.jpg" alt=""></li>
+    		</ul>
+    		<ul class="btn">
+    			<li class="active">1</li>
+    			<li>2</li>
+    			<li>3</li>
+    			<li>4</li>
+    			<li>5</li>
+    		</ul>
+    	</div>
+    </div>
+    <script type="text/javascript">
+    	window.onload = function () {
+    		var app = app || {},
+    			index = 0,
+    			i,
+    			clear,
+    			auto,
+          pause;
+    		app.imageLi = document.getElementsByTagName("ul")[0].getElementsByTagName("li");
+    		app.btnLi = document.getElementsByTagName("ul")[1].getElementsByTagName("li");
+        app.carousel = document.getElementById("carousel");
+        
+  			for (i = 0, len = app.btnLi.length; i < len; i++) {
+  				app.btnLi[i].onmouseover = function (e) {
+            var e = e || window.event,
+                target = e.target || e.srcElement;
+            show(target.innerHTML - 1);
+          }
+  			}
+  			
+  			app.carousel.onmouseover = function (e) {
+  				clearTimeout(auto);
+          clearTimeout(pause);
+  			};
+  			app.carousel.onmouseleave = function (e) {
+  				pause = setTimeout(autoPlay, 500);
+  			};
+
+        i = -1;
+        autoPlay()
+
+   			function autoPlay () {
+   				i++;
+  				i>=app.btnLi.length && (i = 0);
+  				show(i);
+   				auto = setTimeout(arguments.callee, 2000);
+   			}
+
+   			function show (num) {
+   				var i,
+   					len = app.btnLi.length,
+   					opacity = 0,
+   					index = num;
+   				for (i = 0; i < len; i++) {
+   					app.btnLi[i].className = "";
+   					app.imageLi[i].style.opacity = 0;
+   					app.imageLi[i].style.filter = "alpha(opacity=0)";
+   				}
+   				app.btnLi[index].className = "active";
+   				clearTimeout(clear);
+   				(function () {
+   					opacity += 2;
+   					(opacity > 100) && (opacity = 100);
+   					app.imageLi[index].style.opacity = opacity / 100;
+   					app.imageLi[index].style.filter = "alpha(opacity="+opacity+")";
+   					clear = setTimeout(arguments.callee, 20);
+   				}());
+   			}
+    	}
+    </script>
 </body>
 </html>
