@@ -1,0 +1,11 @@
+.school-component-title{ padding: 6px 10px; font: 14px "Microsoft YaHei", Arial bold; background-color: #3777BC; color: #fff;}
+.school-component-province{ margin: 8px; border: 1px solid #c3c3c3;}
+.school-component-province ul:after{ content: ""; clear: both; display: block;}
+.school-component-province li.selected a{ background-color: #005EAC; color: #fff;}
+.school-component-province li{ float: left; font-size: 12px;}
+.school-component-province a{ margin: 4px 5px; padding: 2px; color: #005EAC; text-decoration: none; display: block;}
+.school-component-province a:hover{ text-decoration: underline;}
+.school-component-university{ margin: 8px; padding: 0 6px; height: 200px; overflow: auto; border: 1px solid #c3c3c3;}
+.school-component-university li{ display: inline-block; font-size: 12px;}
+.school-component-university a{ margin: 4px 30px 4px 0; padding: 2px; padding-left: 12px; width: 148px; height: 14px; line-height: 14px; color: #005EAC; text-decoration: none; display: block; overflow: hidden;}
+.school-component-university a:hover{ background-color: #005EAC; color: #fff;}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学校选择器v1</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style type="text/css" rel="stylesheet">
+        *{ margin: 0; padding: 0;}
+        ul{ list-style: none;}
+        .school-selector{ width: 600px; margin: 20px auto;}
+        .text-input{ margin-bottom: 10px;}
+        .hide{ display: none;}
+        #school-component{ width: 640px; border: 1px solid #005eac;}   
+    </style>
+</head>
+<body>
+    <div class="school-selector">
+        <div class="text-input">
+            <input type="text" readonly="readonly" class="school-name">
+            <input type="text" readonly="readonly" class="school-id">
+            <a href="javascript: void(0)" class="reselect hide">重新选择</a>
+        </div>
+        <div id="school-component">
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/universities.js"></script>
+    <script type="text/javascript" src="js/school-selector.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var $schoolName = $('.school-name');
+            var $schoolId = $('.school-id');
+            var $reselect = $('.reselect');
+            // schoolSelector对象初始化
+            var schoolComponent = new schoolSelector({
+                appendTo : '#school-component',
+                onClickCallBack : function (obj){
+                    $schoolName.val($(obj).find('a').html()).next().val($(obj).attr('data-uid'));
+                    $reselect.show();
+                }
+            });
+
+            $reselect.click(function () {
+                schoolComponent.show();
+                $(this).hide();
+            });
+        });
+    </script>
+</body>
+</html>
