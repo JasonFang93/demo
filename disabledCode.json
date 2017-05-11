@@ -1,0 +1,16 @@
+{
+  "name": "disabledCode list",
+  "content": [{
+    "code": "0xf000",
+    "description": "0xf000,系统占用编码"
+  },{
+    "code": "0xf001",
+    "description": "0xf001,系统占用编码"
+  },{
+    "code": "0xf002",
+    "description": "0xf002,系统占用编码"
+  },{
+    "code": "0xf003",
+    "description": "0xf003,系统占用编码"
+  }]
+}
